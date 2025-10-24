@@ -1,0 +1,17 @@
+{
+  "name": "letter-envelope",
+  "version": "1.0.0",
+  "description": "Animated envelope letter website",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve -s . -l 3000",
+    "build": "echo 'No build step required for static site'",
+    "deploy": "echo 'Deploying to Render'"
+  },
+  "keywords": ["letter", "envelope", "animation", "website"],
+  "author": "EmirMarles",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}
