@@ -4,14 +4,10 @@
   "description": "Animated envelope letter website",
   "main": "index.html",
   "scripts": {
-    "start": "npx serve -s . -p $PORT",
-    "build": "npm install",
-    "deploy": "echo 'Deploying to Render'"
+    "start": "python -m http.server $PORT",
+    "build": "echo 'No build required'"
   },
   "keywords": ["letter", "envelope", "animation", "website"],
   "author": "EmirMarles",
-  "license": "MIT",
-  "dependencies": {
-    "serve": "^14.2.1"
-  }
+  "license": "MIT"
 }
