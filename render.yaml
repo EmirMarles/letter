@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: letter-envelope
-    env: static
-    buildCommand: npm install
-    startCommand: npm start
-    plan: free
-    branch: main
-    rootDir: .
