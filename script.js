@@ -1,6 +1,6 @@
 const envelope = document.querySelector(".envelope-wrapper");
-const stamp = document.querySelector(".stamp");
+const heart = document.querySelector(".heart");
 
-stamp.addEventListener("click", ()=>{
+heart.addEventListener("click", ()=>{
     envelope.classList.toggle("flap")
 })
