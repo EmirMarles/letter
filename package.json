@@ -4,8 +4,8 @@
   "description": "Animated envelope letter website",
   "main": "index.html",
   "scripts": {
-    "start": "npx serve -s . -l 3000",
-    "build": "echo 'No build step required for static site'",
+    "start": "npx serve -s . -p $PORT",
+    "build": "npm install",
     "deploy": "echo 'Deploying to Render'"
   },
   "keywords": ["letter", "envelope", "animation", "website"],
