@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Georgia', serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #f8f9fa;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -24,8 +24,8 @@ body::before {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        radial-gradient(circle at 30% 20%, rgba(139, 69, 19, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(160, 82, 45, 0.03) 0%, transparent 50%);
     pointer-events: none;
 }
 
@@ -37,93 +37,101 @@ body::before {
     perspective: 1000px;
 }
 
-/* Envelope Styles */
+/* Envelope Styles - Kraft Paper Design */
 .envelope {
     position: relative;
-    width: 320px;
-    height: 220px;
+    width: 300px;
+    height: 200px;
     margin: 0 auto;
     cursor: pointer;
     transform-style: preserve-3d;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.15));
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.12));
 }
 
 .envelope-back {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: linear-gradient(145deg, #f8f9fa, #e9ecef);
-    border: 3px solid #dee2e6;
-    border-radius: 12px;
+    background: 
+        linear-gradient(145deg, #d2b48c, #cd853f),
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 2px,
+            rgba(139, 69, 19, 0.1) 2px,
+            rgba(139, 69, 19, 0.1) 4px
+        );
+    border: 2px solid #8b4513;
+    border-radius: 8px;
     box-shadow: 
-        inset 0 2px 4px rgba(0,0,0,0.1),
-        0 8px 20px rgba(0,0,0,0.1);
+        inset 0 1px 3px rgba(0,0,0,0.2),
+        0 6px 15px rgba(0,0,0,0.15);
 }
 
 .envelope-front {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: linear-gradient(145deg, #ffffff, #f8f9fa);
-    border: 3px solid #dee2e6;
-    border-radius: 12px;
+    background: 
+        linear-gradient(145deg, #f5deb3, #deb887),
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 1px,
+            rgba(139, 69, 19, 0.08) 1px,
+            rgba(139, 69, 19, 0.08) 2px
+        );
+    border: 2px solid #8b4513;
+    border-radius: 8px;
     transform-origin: bottom;
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 
-        inset 0 1px 3px rgba(0,0,0,0.1),
-        0 4px 12px rgba(0,0,0,0.1);
+        inset 0 1px 2px rgba(0,0,0,0.15),
+        0 4px 10px rgba(0,0,0,0.12);
 }
 
 .envelope-flap {
     position: absolute;
-    top: -25px;
+    top: -20px;
     left: 0;
     width: 100%;
-    height: 50px;
-    background: linear-gradient(145deg, #ffffff, #f8f9fa);
-    border: 3px solid #dee2e6;
+    height: 40px;
+    background: 
+        linear-gradient(145deg, #f5deb3, #deb887),
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 1px,
+            rgba(139, 69, 19, 0.08) 1px,
+            rgba(139, 69, 19, 0.08) 2px
+        );
+    border: 2px solid #8b4513;
     border-bottom: none;
-    border-radius: 12px 12px 0 0;
+    border-radius: 8px 8px 0 0;
     transform-origin: bottom;
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 
-        inset 0 1px 3px rgba(0,0,0,0.1),
-        0 2px 8px rgba(0,0,0,0.1);
+        inset 0 1px 2px rgba(0,0,0,0.15),
+        0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* Add stamp */
-.envelope-flap::after {
-    content: '✉';
-    position: absolute;
-    top: 8px;
-    right: 15px;
-    font-size: 20px;
-    color: #6c757d;
-    opacity: 0.7;
-}
-
-/* Add address lines */
-.envelope-front::before {
+/* Add paper fiber texture */
+.envelope-back::before,
+.envelope-front::before,
+.envelope-flap::before {
     content: '';
     position: absolute;
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    height: 2px;
-    background: linear-gradient(90deg, #dee2e6 0%, transparent 100%);
-    border-radius: 1px;
-}
-
-.envelope-front::after {
-    content: '';
-    position: absolute;
-    top: 35px;
-    left: 20px;
-    right: 20px;
-    height: 1px;
-    background: linear-gradient(90deg, #dee2e6 0%, transparent 100%);
-    border-radius: 1px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(139, 69, 19, 0.1) 0%, transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(160, 82, 45, 0.08) 0%, transparent 25%),
+        radial-gradient(circle at 50% 50%, rgba(139, 69, 19, 0.05) 0%, transparent 40%);
+    border-radius: inherit;
+    pointer-events: none;
 }
 
 /* Envelope Open State */
@@ -141,26 +149,34 @@ body::before {
         0 4px 15px rgba(0,0,0,0.2);
 }
 
-/* Letter Styles */
+/* Letter Styles - Beautiful Paper */
 .letter {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0) rotateY(180deg);
-    width: 300px;
-    height: 200px;
-    background: linear-gradient(145deg, #ffffff, #f8f9fa);
-    border: 2px solid #dee2e6;
-    border-radius: 8px;
+    width: 280px;
+    height: 180px;
+    background: 
+        linear-gradient(145deg, #fefefe, #f5f5f5),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 24px,
+            rgba(0,0,0,0.02) 24px,
+            rgba(0,0,0,0.02) 25px
+        );
+    border: 1px solid #d3d3d3;
+    border-radius: 4px;
     box-shadow: 
-        0 15px 35px rgba(0,0,0,0.2),
-        inset 0 1px 3px rgba(0,0,0,0.1);
+        0 20px 40px rgba(0,0,0,0.15),
+        inset 0 1px 2px rgba(0,0,0,0.05);
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 10;
     transform-style: preserve-3d;
 }
 
-/* Add paper texture to letter */
+/* Add subtle paper texture to letter */
 .letter::before {
     content: '';
     position: absolute;
@@ -169,14 +185,16 @@ body::before {
     right: 0;
     bottom: 0;
     background: 
+        radial-gradient(circle at 30% 20%, rgba(0,0,0,0.01) 0%, transparent 40%),
+        radial-gradient(circle at 70% 80%, rgba(0,0,0,0.01) 0%, transparent 30%),
         repeating-linear-gradient(
-            0deg,
+            45deg,
             transparent,
-            transparent 24px,
-            rgba(0,0,0,0.03) 24px,
-            rgba(0,0,0,0.03) 25px
+            transparent 8px,
+            rgba(0,0,0,0.01) 8px,
+            rgba(0,0,0,0.01) 9px
         );
-    border-radius: 6px;
+    border-radius: 3px;
     pointer-events: none;
 }
 
@@ -185,23 +203,36 @@ body::before {
 }
 
 .letter-content {
-    padding: 20px;
+    padding: 25px;
     height: 100%;
     overflow-y: auto;
+    position: relative;
 }
 
 .letter-text {
     font-size: 14px;
-    line-height: 1.6;
-    color: #333;
+    line-height: 1.8;
+    color: #2c3e50;
+    font-family: 'Georgia', serif;
+    text-align: left;
 }
 
 .letter-text p {
-    margin-bottom: 12px;
+    margin-bottom: 15px;
+    text-indent: 0;
+}
+
+.letter-text p:first-child {
+    font-weight: bold;
+    color: #1a252f;
+    margin-bottom: 20px;
 }
 
 .letter-text p:last-child {
     margin-bottom: 0;
+    margin-top: 20px;
+    font-style: italic;
+    color: #5d6d7e;
 }
 
 /* Mobile Responsiveness */
@@ -272,36 +303,36 @@ body::before {
     animation: envelopeOpen 0.3s ease;
 }
 
-/* Hover effects */
+/* Hover effects - Natural kraft paper */
 .envelope:hover {
-    transform: scale(1.05) translateY(-5px);
-    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.2));
+    transform: scale(1.03) translateY(-3px);
+    filter: drop-shadow(0 12px 25px rgba(0, 0, 0, 0.18));
 }
 
 .envelope:hover .envelope-flap {
-    transform: rotateX(-8deg) translateY(-2px);
+    transform: rotateX(-5deg) translateY(-1px);
 }
 
 .envelope:hover .envelope-front {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
 }
 
-/* Add subtle glow effect on hover */
+/* Add subtle warm glow effect on hover */
 .envelope:hover::before {
     content: '';
     position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
-    border-radius: 20px;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    background: radial-gradient(circle, rgba(139, 69, 19, 0.08) 0%, transparent 70%);
+    border-radius: 15px;
     z-index: -1;
     opacity: 0;
-    animation: glow 2s ease-in-out infinite alternate;
+    animation: warmGlow 2s ease-in-out infinite alternate;
 }
 
-@keyframes glow {
+@keyframes warmGlow {
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
