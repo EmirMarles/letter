@@ -11,7 +11,7 @@
   "keywords": ["letter", "envelope", "animation", "website"],
   "author": "EmirMarles",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "serve": "^14.2.1"
   }
 }
