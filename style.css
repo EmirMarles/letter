@@ -1,22 +1,24 @@
 :root{
     --primary: #fff;
     --bg-color: #f5f3e7;
-    --bg-envelope-color: #f5edd1;
-    --envelope-tab: #ecdeb8;
-    --envelope-cover: #e6cfa7;
-    --shadow-color: rgba(0, 0, 0, 0.2);
+    --bg-envelope-color: #e3cba6;
+    --envelope-tab: #ead6b9;
+    --envelope-cover: #e3cba6;
+    --shadow-color: rgba(0, 0, 0, 0.08);
     --txt-color: #444;
-    --heart-color: rgb(252, 8, 231);
+    --stamp-color: #c97a7a;
+    --warm-shadow: rgba(0, 0, 0, 0.06);
 }
 
 body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background: var(--bg-color);
+    background: radial-gradient(circle at center, #f5f3e7 70%, #ede9d9 100%);
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
 }
 
 .container {
@@ -27,8 +29,9 @@ body{
 
 .container > .envelope-wrapper {
     background: var(--bg-envelope-color);
-    box-shadow: 0 0 40px var(--shadow-color);
+    box-shadow: 0 15px 30px var(--shadow-color), 0 5px 10px var(--warm-shadow);
     border-radius: 12px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .container .envelope-wrapper .envelope{
@@ -78,10 +81,12 @@ body{
 }
 
 .container .envelope-wrapper .envelope .letter .text{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
     color: var(--txt-color);
     text-align: left;
-    font-size: 10px;
+    font-size: 11px;
+    line-height: 1.6;
+    font-weight: 400;
 }
 
 .flap .envelope::before{
@@ -93,4 +98,57 @@ body{
     bottom: 100px;
     transform: scale(1.5);
     transition-delay: 1s;
+}
+
+/* Cottagecore hover effects */
+.envelope-wrapper:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px var(--shadow-color), 0 8px 15px var(--warm-shadow);
+    filter: brightness(1.05);
+}
+
+/* Add subtle paper texture to envelope */
+.envelope-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 1px,
+            rgba(0,0,0,0.02) 1px,
+            rgba(0,0,0,0.02) 2px
+        );
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* Add vintage stamp if needed */
+.stamp {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 35px;
+    height: 25px;
+    background: var(--stamp-color);
+    border-radius: 4px;
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.2), 0 3px 10px rgba(0,0,0,0.15);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.stamp::before {
+    content: "✉";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+    opacity: 0.9;
 }
