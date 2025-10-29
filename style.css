@@ -113,52 +113,124 @@ body::before {
     clip-path: polygon(0% 56%, 50% 43%, 100% 56%, 100% 100%, 0% 100%);
 }
 
-.envelope > .letter{
-    position: absolute;
-    right: 20%;
-    bottom: 0;
-    width: 54%;
-    height: 80%;
-    background: var(--primary);
-    text-align: center;
-    transition: all 1s ease-in-out;
-    box-shadow: 0 0 5px var(--shadow-color);
-    padding: 20px 10px;
-    border-radius: 6px;
-}
-
-.container .envelope-wrapper .envelope .letter .text{
-    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
-    color: var(--txt-color);
-    text-align: left;
-    font-size: 12px;
-    line-height: 1.8;
-    font-weight: 400;
-    height: 100%;
-    overflow-y: auto;
-    padding: 5px;
-}
-
-.container .envelope-wrapper .envelope .letter .text p {
-    margin-bottom: 12px;
-}
-
-.container .envelope-wrapper .envelope .letter .text strong {
-    font-weight: 600;
-    color: #2c3e50;
-    display: block;
-    margin-bottom: 15px;
-}
-
 .flap .envelope::before{
     transform: rotateX(180deg);
     z-index: 0;
 }
 
-.flap .envelope .letter {
-    bottom: 100px;
-    transform: scale(1.5);
-    transition-delay: 1s;
+/* Letter Overlay - Animates out from envelope */
+.letter-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+}
+
+.letter-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+.letter-content {
+    background: var(--primary);
+    position: relative;
+    width: 600px;
+    max-width: 90%;
+    max-height: 90vh;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    /* Start small at center */
+    transform-origin: center center;
+    transform: scale(0.1);
+    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.letter-overlay.active .letter-content {
+    transform: scale(1);
+}
+
+.letter-text {
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+    color: var(--txt-color);
+    text-align: left;
+    font-size: 18px;
+    line-height: 1.8;
+    font-weight: 400;
+}
+
+.letter-text p {
+    margin-bottom: 16px;
+}
+
+.letter-text strong {
+    font-weight: 600;
+    color: #2c3e50;
+    display: block;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+.close-letter {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 32px;
+    color: #666;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.close-letter:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+/* Mobile responsiveness - full screen on smartphones */
+@media (max-width: 768px) {
+    .letter-content {
+        max-width: 100%;
+        max-height: 100vh;
+        width: 100vw;
+        height: 100vh;
+        padding: 30px 20px;
+        border-radius: 0;
+        margin: 0;
+    }
+    
+    .letter-text {
+        font-size: 16px;
+    }
+    
+    .letter-text strong {
+        font-size: 20px;
+    }
+    
+    .close-letter {
+        top: 10px;
+        right: 10px;
+        font-size: 28px;
+    }
 }
 
 /* Rustic countryside hover effects */
