@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Preload all images in background (non-blocking)
     const allImages = [
         'photos/Picsart_25-10-26_11-05-35-064.jpg',
-        'photos/Picsart_25-10-29_15-01-29-723.png',
+        'photos/Picsart_25-10-26_10-17-00-665.png',
         'photos/Picsart_25-10-26_10-19-01-454 (2).png',
         'photos/europeana-LZ10F9WaRFs-unsplash.jpg'
     ];
