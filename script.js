@@ -1,14 +1,11 @@
 // Image preloading function
-function preloadImages(imageUrls) {
-    const promises = imageUrls.map(url => {
-        return new Promise((resolve, reject) => {
-            const img = new Image();
-            img.onload = resolve;
-            img.onerror = reject;
-            img.src = url;
-        });
+function preloadImage(url) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = resolve;
+        img.onerror = resolve; // Continue even if image fails
+        img.src = url;
     });
-    return Promise.all(promises);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -18,42 +15,39 @@ document.addEventListener("DOMContentLoaded", () => {
     const letterOverlay = document.querySelector(".letter-overlay");
     const closeLetter = document.querySelector(".close-letter");
 
-    // List of images to preload
-    const imagesToPreload = [
-        'photos/europeana-LZ10F9WaRFs-unsplash.jpg',
+    // Critical images (visible immediately) - load first
+    const criticalImages = [
         'photos/Picsart_25-10-26_11-05-35-064.jpg',
         'photos/Picsart_25-10-26_10-17-00-665.png',
         'photos/Picsart_25-10-26_10-19-01-454 (2).png'
     ];
 
-    // Preload all images
-    preloadImages(imagesToPreload)
-        .then(() => {
-            // All images loaded, hide loading screen
+    // Background image can load later (less critical)
+    const backgroundImage = 'photos/europeana-LZ10F9WaRFs-unsplash.jpg';
+
+    // Load background in parallel (non-blocking)
+    preloadImage(backgroundImage);
+
+    // Create a timeout to ensure loading doesn't take too long (max 2 seconds)
+    const maxLoadTime = new Promise(resolve => setTimeout(resolve, 2000));
+
+    // Wait for critical images or timeout, whichever comes first
+    Promise.race([
+        Promise.all(criticalImages.map(preloadImage)),
+        maxLoadTime
+    ]).then(() => {
+        // Hide loading screen quickly
+        if (loadingScreen) {
+            loadingScreen.style.opacity = '0';
             setTimeout(() => {
-                if (loadingScreen) {
-                    loadingScreen.style.opacity = '0';
-                    setTimeout(() => {
-                        loadingScreen.style.display = 'none';
-                        if (container) {
-                            container.style.opacity = '1';
-                            container.style.transition = 'opacity 0.5s ease-in';
-                        }
-                    }, 300);
-                }
-            }, 300); // Small delay for smooth transition
-        })
-        .catch((error) => {
-            console.error("Error loading images:", error);
-            // Still hide loading screen even if some images fail
-            if (loadingScreen) {
                 loadingScreen.style.display = 'none';
                 if (container) {
                     container.style.opacity = '1';
-                    container.style.transition = 'opacity 0.5s ease-in';
+                    container.style.transition = 'opacity 0.3s ease-in';
                 }
-            }
-        });
+            }, 150); // Reduced delay
+        }
+    });
 
     if (!envelope || !letterOverlay || !closeLetter) {
         console.error("Missing elements!");
