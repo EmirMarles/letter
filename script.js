@@ -5,6 +5,8 @@ function preloadImage(url) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    const loadingScreen = document.getElementById("loadingScreen");
+    const container = document.querySelector(".container");
     const envelope = document.querySelector(".envelope-wrapper");
     const letterOverlay = document.querySelector(".letter-overlay");
     const closeLetter = document.querySelector(".close-letter");
@@ -19,6 +21,20 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Load images in background without blocking
     allImages.forEach(preloadImage);
+
+    // Show loading screen for 2.5 seconds
+    setTimeout(() => {
+        if (loadingScreen) {
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                if (container) {
+                    container.style.opacity = '1';
+                    container.style.transition = 'opacity 0.5s ease-in';
+                }
+            }, 300);
+        }
+    }, 2500); // 2.5 seconds
 
     if (!envelope || !letterOverlay || !closeLetter) {
         console.error("Missing elements!");
