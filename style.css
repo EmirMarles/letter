@@ -61,10 +61,10 @@ body::before {
 
 .container > .envelope-wrapper {
     background: 
-        /* Subtle overlay to enhance the kraft paper texture */
+        /* Subtle overlay to enhance the envelope texture */
         linear-gradient(rgba(245, 243, 231, 0.2), rgba(245, 243, 231, 0.1)),
-        /* The natural kraft paper texture */
-        url('photos/copy_envelope.jpg');
+        /* The envelope body texture */
+        url('photos/Picsart_25-10-26_11-05-35-064.jpg');
     background-size: cover;
     background-position: center;
     background-blend-mode: multiply;
@@ -105,20 +105,12 @@ body::before {
 .container .envelope-wrapper .envelope::after{
     content: "";
     position: absolute;
+    inset: 0; /* fill the envelope box */
     z-index: 2;
-    width: 0;
-    height: 0;
-    border-top: 130px solid transparent;
-    border-right: 150px solid var(--envelope-cover);
-    border-bottom: 100px solid var(--envelope-cover);
-    border-left: 150px solid var(--envelope-cover);
     border-radius: 0 0 8px 8px;
-    background: 
-        linear-gradient(rgba(245, 243, 231, 0.1), rgba(245, 243, 231, 0.05)),
-        url('photos/copy_envelope.jpg');
-    background-size: cover;
-    background-position: center;
-    background-blend-mode: multiply;
+    background: url('photos/Picsart_25-10-26_10-19-01-454 (2).png') center/cover no-repeat;
+    /* Cut the top into a V so it sits under the flap */
+    clip-path: polygon(0% 56%, 50% 43%, 100% 56%, 100% 100%, 0% 100%);
 }
 
 .envelope > .letter{
@@ -127,7 +119,7 @@ body::before {
     bottom: 0;
     width: 54%;
     height: 80%;
-    background: url('photos/Picsart_25-10-26_11-05-35-064.jpg') center/cover no-repeat;
+    background: var(--primary);
     text-align: center;
     transition: all 1s ease-in-out;
     box-shadow: 0 0 5px var(--shadow-color);
