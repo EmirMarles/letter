@@ -61,10 +61,10 @@ body::before {
 
 .container > .envelope-wrapper {
     background: 
-        /* Balanced overlay for contrast against countryside background */
-        linear-gradient(rgba(245, 243, 231, 0.55), rgba(245, 243, 231, 0.45)),
-        /* The envelope texture image */
-        url('photos/imagess.jpg');
+        /* Subtle overlay to enhance the kraft paper texture */
+        linear-gradient(rgba(245, 243, 231, 0.2), rgba(245, 243, 231, 0.1)),
+        /* The natural kraft paper texture */
+        url('photos/copy_envelope.jpg');
     background-size: cover;
     background-position: center;
     background-blend-mode: multiply;
@@ -91,18 +91,15 @@ body::before {
     content: "";
     position: absolute;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 2;
-    border-top: 130px solid var(--envelope-tab);
-    border-right: 150px solid transparent;
-    border-left: 150px solid transparent;
+    /* Use provided triangle image instead of CSS borders */
+    height: 130px;
     transform-origin: top;
     transition: all 0.5s ease-in-out 0.7s;
-    background: 
-        linear-gradient(rgba(245, 243, 231, 0.3), rgba(245, 243, 231, 0.2)),
-        url('photos/imagess.jpg');
-    background-size: cover;
-    background-position: center;
-    background-blend-mode: multiply;
+    background: url('photos/Picsart_25-10-26_10-17-00-665.png') center no-repeat;
+    background-size: contain;
 }
 
 .container .envelope-wrapper .envelope::after{
@@ -117,8 +114,8 @@ body::before {
     border-left: 150px solid var(--envelope-cover);
     border-radius: 0 0 8px 8px;
     background: 
-        linear-gradient(rgba(245, 243, 231, 0.3), rgba(245, 243, 231, 0.2)),
-        url('photos/imagess.jpg');
+        linear-gradient(rgba(245, 243, 231, 0.1), rgba(245, 243, 231, 0.05)),
+        url('photos/copy_envelope.jpg');
     background-size: cover;
     background-position: center;
     background-blend-mode: multiply;
@@ -130,7 +127,7 @@ body::before {
     bottom: 0;
     width: 54%;
     height: 80%;
-    background: var(--primary);
+    background: url('photos/Picsart_25-10-26_11-05-35-064.jpg') center/cover no-repeat;
     text-align: center;
     transition: all 1s ease-in-out;
     box-shadow: 0 0 5px var(--shadow-color);
