@@ -136,12 +136,12 @@ body::before {
 .envelope-wrapper > .envelope::before{
     content: "";
     position: absolute;
-    top: -5px;
+    top: -3px;
     left: 0;
     right: 0;
     z-index: 2;
     /* Use provided triangle image instead of CSS borders */
-    height: 145px;
+    height: 140px;
     transform-origin: top;
     transition: all 0.5s ease-in-out 0.7s;
     background: url('photos/Picsart_25-10-26_10-17-00-665.png') center no-repeat;
@@ -155,8 +155,8 @@ body::before {
     z-index: 2;
     border-radius: 0 0 8px 8px;
     background: url('photos/Picsart_25-10-26_10-19-01-454 (2).png') center/cover no-repeat;
-    /* Cut the top into a V so it sits under the flap - deeper V to cover more */
-    clip-path: polygon(0% 62%, 50% 48%, 100% 62%, 100% 100%, 0% 100%);
+    /* Cut the top into a V so it sits under the flap - adjusted to reduce gap when opened */
+    clip-path: polygon(0% 58%, 50% 45%, 100% 58%, 100% 100%, 0% 100%);
 }
 
 .flap .envelope::before{
